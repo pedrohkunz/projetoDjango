@@ -1,0 +1,8 @@
+Django
+djangorestframework
+markdown
+django-filter
+python-decouple
+django-widget-tweaks
+oracledb
+Pillow
