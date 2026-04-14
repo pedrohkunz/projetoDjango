@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
+   <br />
+    <a href="{% url 'categories:add_category' %}">Cadastro de novo categoria</a>
+  <br />
   <br />
   <b>Lista de Categorias</b>
   <br />
@@ -15,6 +18,8 @@
         <th scope="col">ID</th>
         <th scope="col">Nome</th>
         <th scope="col">Descricao</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +28,12 @@
           <th>{{ category.id }}</th>
           <td>{{ category.name }}</td>
           <td>{{ category.description }}</td>
+          <td>
+            <a href="{% url 'categories:edit_category' category.id %}">Editar</a>
+          </td>
+          <td>
+            <a href="{% url 'categories:delete_category' category.id %}" >Excluir</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
