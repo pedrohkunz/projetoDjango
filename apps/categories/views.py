@@ -37,3 +37,8 @@ def edit_category(request, id_category):
     form = CategoryForm(instance=category)
     context['form'] = form
     return render(request, template_name, context)
+
+def delete_category(request, id_category):
+    category = Category.objects.get(id=id_category)
+    category.delete()
+    return redirect('categories:list_categories')
