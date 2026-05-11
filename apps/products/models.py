@@ -6,7 +6,8 @@ from categories.models import Category
 class Product(models.Model):
     name = models.CharField('Nome', max_length=50)
     description = models.TextField('Descricao', max_length=100)
-    date_fabrication = models.DateField('Data Fabricacao', auto_now=False, auto_now_add=False) 
+    price = models.FloatField('Preco', null=True, blank=True, default=0.0)
+    date_fabrication = models.DateField('Data Fabricacao', auto_now=False, auto_now_add=False)
     is_active = models.BooleanField('Ativo', default=False)
     photo = models.ImageField('Foto', upload_to='photos')
     doc = models.FileField('Documentos', upload_to='docs')

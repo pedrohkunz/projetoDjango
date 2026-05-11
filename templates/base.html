@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}">
     <title>{% block title %}Nome do meu App{% endblock title %}</title>
 </head>
-<body>    
+<body class="core_body">
+    {% if user.is_authenticated %}
     <a href="{% url 'core:home' %}" ><img src="{% static 'img/menu.png' %}" width="200" height="60" /></a>
     <br />
     <a href="{% url 'categories:list_categories' %}" ><button onclick="mudarCor()">Categorias</button></a>
@@ -17,7 +18,12 @@
     <a href="{% url 'clients:list_clients' %}" ><button>Clientes</button></a>
     <a href="{% url 'employees:list_employees' %}" ><button>Funcionários</button></a>
     <a href="{% url 'socialnetworks:list_socialnetworks' %}" ><button>Rede social</button></a>
-    <a href="#" ><button onclick="alertarMensagem()">Pedidos</button></a>
+    <a href="{% url 'orders:list_orders' %}" ><button>Pedidos</button></a>
+    <a href="{% url 'orders:list_items_products' %}" ><button>Compras</button></a>
+    <a href="#"><button>{{ user.get_full_name|default:user.username }}</button></a>
+    <a href="{% url 'accounts:user_change_information' user.username %}"><button>Conta</button></a>
+    <a href="{% url 'accounts:user_change_password' %}"><button>Trocar senha</button></a>
+    <a href="{% url 'accounts:user_logout' %}"><button>Sair</button></a>
     <br />
 
     <br/>
@@ -25,11 +31,12 @@
         <input name="query" type="text" placeholder="Sobrenome do cliente" aria-label="Buscar">
         <button type="submit">Buscar</button>
     </form>
+    {% endif %}
 
     {% block body %}
-    
+
     {% endblock body %}
-    
+
     <script src="{% static 'js/arquivo_com_javascript.js' %}"></script>
 </body>
 </html>
